@@ -41,8 +41,8 @@ class RenderUser extends Component{
 				<Link className = 'btn btn-primary' to = '/posts'>
 					Back to main
 				</Link>
-				<h4>Poster: {user.username} </h4>
-				<h3>POSTS</h3>
+				<h3 className = "text-center">Poster: {user.username} </h3>
+				<h2 className = "text-center">POSTS</h2>
 					<ul style={styles} className="list-group">
 						{this.renderUser()}
 					</ul>
