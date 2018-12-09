@@ -9,7 +9,7 @@ export const FETCH_USER = 'fetch_user';
 export const LOGIN_USER_FACEBOOK = 'login_user_facebook';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
-const ROOT_URL = 'http://localhost:3001';
+const ROOT_URL = 'https://miniblog-backend.herokuapp.com';
 let axiosConfig = {
     headers: {
         'Content-Type': 'application/json;charset=UTF-8',
