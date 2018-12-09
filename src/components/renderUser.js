@@ -31,6 +31,10 @@ class RenderUser extends Component{
 			)
 		}
 		else{
+			const styles = {
+				'margin-left': '10%',
+				'margin-right': '10%'
+			}
 			const user = this.props.user;
 			return(
 				<div>
@@ -39,7 +43,7 @@ class RenderUser extends Component{
 				</Link>
 				<h4>Poster: {user.username} </h4>
 				<h3>POSTS</h3>
-					<ul className="list-group">
+					<ul style={styles} className="list-group">
 						{this.renderUser()}
 					</ul>
 				</div>
