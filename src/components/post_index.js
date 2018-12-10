@@ -15,7 +15,7 @@ class PostsIndex extends Component {
 						Poster: {post.username}
 					</Link>
 					<br />
-					Created At: {post.createdAt}
+					Created At: {post.createdAt}, near {post.location}
 					<br />
 					<Link to={`/posts/${post._id}`}>{post.title}</Link>
 				</li>

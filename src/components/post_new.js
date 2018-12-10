@@ -4,7 +4,9 @@ import {Field,reduxForm} from 'redux-form';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createPost} from '../actions/';
+import axios from 'axios';
 let newPost = {};
+	
 class PostNew extends Component{
 	renderField(field){
 		const className1 = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`
@@ -20,12 +22,25 @@ class PostNew extends Component{
 			</div>
 			);
 	}
+	
 	onSubmit(values){
 		//this === component
-		const username = Object.values(this.props.user)[0].username;
-		this.props.createPost(values,username,()=>{
-			this.props.history.push('/posts');
-		});
+		let returnString;
+		if(navigator.geolocation){
+			navigator.geolocation.getCurrentPosition((pos) => {
+				const lat = pos.coords.latitude;
+				const lng = pos.coords.longitude;
+				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBEXjvmJVrqTMbcSQG3HbEZouAJuQ5wB5w`)
+				.then((res) => {
+					returnString = res.data.results[3].formatted_address;
+					console.log(returnString);
+					const username = Object.values(this.props.user)[0].username;
+					this.props.createPost(values,username,returnString,()=>{
+						this.props.history.push('/posts');
+					});
+				});
+			});
+		}
 	}
 	render(){
 		//handleSubmit takes in a function

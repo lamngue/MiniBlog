@@ -9,7 +9,7 @@ export const FETCH_USER = 'fetch_user';
 export const LOGIN_USER_FACEBOOK = 'login_user_facebook';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
-const ROOT_URL = 'https://miniblog-backend.herokuapp.com';
+const ROOT_URL = 'http://localhost:3001';
 let axiosConfig = {
     headers: {
         'Content-Type': 'application/json;charset=UTF-8',
@@ -37,8 +37,10 @@ export function fetchPosts(){
 	}
 }
 
-export function createPost(values,username,callback){
+export function createPost(values,username,location,callback){
 	values.username = username;
+	values.location = location;
+	console.log(values);
 	const newPost = axios.post(`${ROOT_URL}/posts`,values).then(() => callback());	
 	return{
 		type: CREATE_POST,
