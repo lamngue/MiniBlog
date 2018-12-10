@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createPost} from '../actions/';
 import axios from 'axios';
+import {API_KEY} from '../keys.js';
 let newPost = {};
 	
 class PostNew extends Component{
@@ -30,7 +31,7 @@ class PostNew extends Component{
 			navigator.geolocation.getCurrentPosition((pos) => {
 				const lat = pos.coords.latitude;
 				const lng = pos.coords.longitude;
-				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBEXjvmJVrqTMbcSQG3HbEZouAJuQ5wB5w`)
+				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`)
 				.then((res) => {
 					returnString = res.data.results[3].formatted_address;
 					console.log(returnString);
