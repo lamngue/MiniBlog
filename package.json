@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "babel-preset-stage-1": "^6.1.18",
     "cors-anywhere": "^0.4.1",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "googleapis": "^35.0.0",
     "lodash": "^3.10.1",
@@ -17,10 +18,10 @@
     "react-google-login": "^4.0.0",
     "react-redux": "5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-scripts": "2.1.1",
     "redux": "4.0.0",
     "redux-form": "^6.6.3",
-    "redux-promise": "^0.6.0",
-    "react-scripts": "2.1.1"
+    "redux-promise": "^0.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
