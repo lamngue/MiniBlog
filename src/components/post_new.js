@@ -32,7 +32,7 @@ class PostNew extends Component{
 				const lng = pos.coords.longitude;
 				const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`;
 				console.log(API_KEY);
-				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBEXjvmJVrqTMbcSQG3HbEZouAJuQ5wB5w`)
+				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`);
 				.then((res) => {
 					returnString = res.data.results[3].formatted_address;
 					console.log(returnString);
