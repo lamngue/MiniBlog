@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createPost} from '../actions/';
 import axios from 'axios';
-const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`
 let newPost = {};
 	
 class PostNew extends Component{
@@ -31,6 +30,7 @@ class PostNew extends Component{
 			navigator.geolocation.getCurrentPosition((pos) => {
 				const lat = pos.coords.latitude;
 				const lng = pos.coords.longitude;
+				const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`;
 				console.log(API_KEY);
 				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`)
 				.then((res) => {
