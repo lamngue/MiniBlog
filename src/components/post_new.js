@@ -31,6 +31,7 @@ class PostNew extends Component{
 			navigator.geolocation.getCurrentPosition((pos) => {
 				const lat = pos.coords.latitude;
 				const lng = pos.coords.longitude;
+				console.log(API_KEY);
 				axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${API_KEY}`)
 				.then((res) => {
 					returnString = res.data.results[3].formatted_address;
