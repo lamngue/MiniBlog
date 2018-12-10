@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createPost} from '../actions/';
 import axios from 'axios';
-import {API_KEY} from'../keys.js';
+const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`
 let newPost = {};
 	
 class PostNew extends Component{
