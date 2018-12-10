@@ -28,10 +28,10 @@ class PostShow extends Component{
 				</Link>
 				<button className="btn btn-danger pull-xs-right" 
 				onClick={this.onDelete.bind(this)}> Delete Post</button>
-					<h4>Poster: {post.username} </h4>
-					<h3>{post.title}</h3>
-					<h6>Categories: {post.categories}</h6>
-					<p>{post.content}</p>
+					<h3 className="text-center">Poster: {post.username} </h3>
+					<h2 className="text-center">{post.title}</h2>
+					<h3 className="text-center">Categories: {post.categories}</h3>
+					<p className="text-center">{post.content}</p>
 			</div>
 		);
 	}
