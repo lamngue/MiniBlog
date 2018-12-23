@@ -9,10 +9,10 @@ import PostShow from "./components/post_show.js";
 import RegisterUser from "./components/registerUser.js";
 import RenderUser from "./components/renderUser.js";
 import LoginUser from "./components/loginUser.js";
-import promise from "redux-promise";
 import reducers from "./reducers";
+import thunk from "redux-thunk";
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(reducers)}>

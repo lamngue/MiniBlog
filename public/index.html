@@ -50,50 +50,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-    //geocode();
-
-    function geocode() {
-        var lat, lng;
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                lat = position.coords.latitude;
-                lng = position.coords.longitude;
-                console.log(lat, lng);
-                axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBEXjvmJVrqTMbcSQG3HbEZouAJuQ5wB5w`)
-                    .then(function(res) {
-                        const formattedAddress = res.data.results[0].formatted_address;
-                        const formattedAddressOutPut = `<ul class="list-group">
-              <li class="list-group-item">${formattedAddress}</li>`;
-                        //output to app
-                        document.getElementById('formatted-address').innerHTML = formattedAddressOutPut;
-
-                        //address component
-                        const addressComponent = res.data.results[0].address_components;
-                        let addressComponentOutput = `<ul class="list-group">`;
-                        for (let i = 0; i < addressComponent.length; i++) {
-                            addressComponentOutput += `
-              <li class="list-group-item"><strong>${addressComponent[i].types[0]}</strong>: ${addressComponent[i].long_name}</li>
-            `;
-                        }
-                        addressComponentOutput += '</ul>'
-                        document.getElementById('address-component').innerHTML = addressComponentOutput;
-                        var geometryOutput = `<ul class="list-group">
-              <li class="list-group-item"><strong>Latitude:</strong>${lat}</li>
-              <li class="list-group-item"><strong>Longitude:</strong>${lng}</li>
-              </ul>`
-                        document.getElementById('geometry').innerHTML = geometryOutput;
-
-                    })
-                    .catch(function(err) {
-                        console.log(err);
-                    })
-            });
-        }
-
-
-    }
-    </script>
 </body>
 
 </html>
