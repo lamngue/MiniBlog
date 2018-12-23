@@ -11,7 +11,7 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const LIKE_POST = "like_post";
 export const UNLIKE_POST = "unlike_post";
-const ROOT_URL = "http://localhost:3001";
+const ROOT_URL = "https://miniblog-backend.herokuapp.com";
 let axiosConfig = {
 	headers: {
 		"Content-Type": "application/json;charset=UTF-8",
