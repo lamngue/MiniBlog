@@ -9,6 +9,7 @@ import PostShow from "./components/post_show.js";
 import RegisterUser from "./components/registerUser.js";
 import RenderUser from "./components/renderUser.js";
 import LoginUser from "./components/loginUser.js";
+import ForgotPassword from "./components/forgotPassword.js";
 import reducers from "./reducers";
 import thunk from "redux-thunk";
 
@@ -24,6 +25,7 @@ ReactDOM.render(
 					<Route path="/posts/:id" component={PostShow} />
 					<Route path="/posts" component={PostsIndex} />
 					<Route path="/user/:id" component={RenderUser} />
+					<Route path="/forgotPassword" component={ForgotPassword} />
 					<Route path="/" component={RegisterUser} />
 				</Switch>
 			</div>

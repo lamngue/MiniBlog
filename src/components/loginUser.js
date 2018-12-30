@@ -11,28 +11,28 @@ class LoginUser extends Component {
         const className1 = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`
         return (
             <div className={className1}>
-				<label>{field.label}</label>
-				<input className="form-control"
-				type="text" 
-				{...field.input}/>
-				<div class="text-help">
-					{field.meta.touched?field.meta.error:''}
-				</div>
-			</div>
+                <label>{field.label}</label>
+                <input className="form-control"
+                type="text" 
+                {...field.input}/>
+                <div class="text-help">
+                    {field.meta.touched?field.meta.error:''}
+                </div>
+            </div>
         );
     }
     renderPasswordField(field) {
         const className1 = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`
         return (
             <div className={className1}>
-				<label>{field.label}</label>
-				<input className="form-control"
-				type="password" 
-				{...field.input}/>
-				<div class="text-help">
-					{field.meta.touched?field.meta.error:''}
-				</div>
-			</div>
+                <label>{field.label}</label>
+                <input className="form-control"
+                type="password" 
+                {...field.input}/>
+                <div class="text-help">
+                    {field.meta.touched?field.meta.error:''}
+                </div>
+            </div>
         );
     }
     onSubmit(values) {
@@ -77,6 +77,7 @@ class LoginUser extends Component {
 					type="password" />
 					<button type="submit" className="btn btn-primary">Submit</button>
 					<Link to="/register" className="btn btn-success">Back to Register</Link>
+                    <Link to="/forgotPassword" className="btn btn-danger">Forgot Password?</Link>
 				</form>
 			</div>
         );
@@ -89,10 +90,10 @@ function validate(values) {
 
     //validate the inputs from 'values'
     if (!values.email) {
-        errors.categories = "Enter an email";
+        errors.email = "Enter an email";
     }
     if (!values.password) {
-        errors.content = "Enter a password";
+        errors.password = "Enter a password";
     }
     return errors;
 }

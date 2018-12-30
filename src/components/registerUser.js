@@ -70,6 +70,9 @@ class RegisterUser extends Component{
 function validate(values){
 	//receives the users input and output an object
 	const errors = {};
+	if(!values.username){
+		errors.username = "Enter an username"
+	}
 	if(!values.email){
 		errors.email = "Enter an email";
 	}
