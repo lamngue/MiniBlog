@@ -37,7 +37,9 @@ class LoginUser extends Component {
     }
     onSubmit(values) {
         this.props.login(values).then(() => {
-            this.props.history.push('/posts');
+            if(this.props.users !== null){
+                this.props.history.push('/posts');
+            }
         }).catch((e) => {
             alert('Incorrect form submission');
         });
@@ -97,9 +99,14 @@ function validate(values) {
     }
     return errors;
 }
+function mapStateToProps(state) {
+    return {
+        users: state.users
+    };
+}
 export default reduxForm({
     validate,
     form: 'LoginUserForm'
 })(
-    connect(null, { login, loginWithFaceBook })(LoginUser)
+    connect(mapStateToProps, { login, loginWithFaceBook })(LoginUser)
 );

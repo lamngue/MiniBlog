@@ -11,7 +11,7 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const LIKE_POST = "like_post";
 export const UNLIKE_POST = "unlike_post";
-const ROOT_URL = "https://miniblog-backend.herokuapp.com";
+const ROOT_URL = "http://localhost:3001";
 let axiosConfig = {
 	headers: {
 		"Content-Type": "application/json;charset=UTF-8",
@@ -99,15 +99,12 @@ export function login(user) {
 	// receives logged in user from backend
 	return async function(dispatch) {
 		// body...
-		try{
-			const res = await axios.post(`${ROOT_URL}/login`, user);
+		const res = await axios.post(`${ROOT_URL}/login`, user);
+		if(res){
 			dispatch({
 				type: LOGIN_USER,
 				payload: res
 			});
-		}
-		catch{
-			alert("Incorrect password or username!")
 		}
 	};
 }
