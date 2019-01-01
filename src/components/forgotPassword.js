@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import {forgotPassword} from '../actions/'
 class ForgotPassword extends Component{
 	renderField(field) {
         const className1 = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`
@@ -19,7 +19,9 @@ class ForgotPassword extends Component{
         );
     }
     onSubmit(values) {
-        console.log("Submitted");
+        this.props.forgotPassword(values).then(() => {
+        	alert("An email with the reset password has been sent to your email!")
+        });
     }
     render(){
 		const {handleSubmit} = this.props; //props passed back by ReduxForm
@@ -55,5 +57,5 @@ export default reduxForm({
     validate,
     form: 'ForgotPasswordForm'
 })(
-    connect(null, null)(ForgotPassword)
+    connect(null, {forgotPassword})(ForgotPassword)
 );

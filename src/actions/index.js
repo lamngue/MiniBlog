@@ -11,11 +11,12 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const LIKE_POST = "like_post";
 export const UNLIKE_POST = "unlike_post";
-const ROOT_URL = "http://localhost:3001";
+export const FORGOT_PASSWORD = "forgot_password";
+const ROOT_URL = "https://miniblog-backend.herokuapp.com";
 let axiosConfig = {
 	headers: {
 		"Content-Type": "application/json;charset=UTF-8",
-		"Access-Control-Allow-Origin": "https://miniblog-backend.herokuapp.com"
+		"Access-Control-Allow-Origin": "*"
 	}
 };
 
@@ -157,4 +158,15 @@ export function unlikePost(username, postId) {
 			payload: res
 		});
 	};
+}
+
+export function forgotPassword(email){
+	console.log(email);
+	return async function(dispatch){
+		const res = await axios.post(`${ROOT_URL}/forgot`, email);
+		dispatch({
+			type: FORGOT_PASSWORD,
+			payload: res
+		});
+	}
 }
