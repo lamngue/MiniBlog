@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Code for Back-end server at: https://github.com/lamngue/MicroBlog-server. Demo at: https://miniblog123.herokuapp.com/ 
 
-The like feature might not work properly.
+The like feature might not work properly. The web might not work when it first loads.
 ## Available Scripts
 
 In the project directory, you can run:
