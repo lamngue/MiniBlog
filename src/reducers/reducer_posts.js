@@ -1,7 +1,6 @@
 import {
 	FETCH_POSTS,
 	FETCH_POST,
-	DELETE_POST,
 	LIKE_POST,
 	UNLIKE_POST
 } from "../actions/";

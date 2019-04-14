@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { fetchPosts } from "../actions/";
 import { likePost } from "../actions/";
 import { unlikePost } from "../actions/";
+import { showLikers, hideLikers } from "../actions/";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import _ from "lodash";
 class PostsIndex extends Component {
 	componentDidMount() {
@@ -33,12 +34,43 @@ class PostsIndex extends Component {
 			);
 		}
 	}
+
 	renderLikeMessage(post) {
-		const liker = post.likedBy[0];
 		if (post.likedBy.length === 1) {
-			return `${liker} likes this`;
-		} else if (post.likedBy.length > 1) {
-			return `${post.likedBy.length} people like this`;
+			const liker = post.likedBy[0];
+			return (
+				<React.Fragment>
+					<a variant="primary">
+						{liker} likes this
+					</a>
+				</React.Fragment>
+			);
+		} 
+		else if (post.likedBy.length > 1) {
+			return (
+				<React.Fragment>
+					<a href="#" variant="primary" onClick={() => this.props.showLikers(post._id)}>
+						{post.likedBy.length} people like this
+					</a>
+					<Modal show={this.props.show.postID === post._id ? true : false} onHide={this.handleClose}>
+					<Modal.Header>
+					  <Modal.Title>People who liked this</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<ul>
+							{post.likedBy.map((liker,id) => {
+								return <li key={id}>{liker}</li>
+							})}
+						</ul>
+					</Modal.Body>
+					<Modal.Footer>
+					  <Button variant="secondary sucess" onClick={() => this.props.hideLikers()}>
+						Close
+					  </Button>
+					</Modal.Footer>
+				  </Modal>
+				</React.Fragment>
+			);
 		} else {
 			return `No like yet`;
 		}
@@ -47,7 +79,7 @@ class PostsIndex extends Component {
 		const currentUser = Object.values(this.props.users)[0].username;
 		return _.map(this.props.posts, post => {
 			return (
-				<li className="list-group-item">
+				<li key={post._id} className="list-group-item">
 					<Link to={`/user/${post.username}`}>
 						Poster: {post.username}
 					</Link>
@@ -103,10 +135,11 @@ class PostsIndex extends Component {
 function mapStateToProps(state) {
 	return {
 		posts: state.posts,
-		users: state.users
+		users: state.users,
+		show: state.handleShowLikers
 	};
 }
 export default connect(
 	mapStateToProps,
-	{ fetchPosts, likePost, unlikePost }
+	{ fetchPosts, likePost, unlikePost, showLikers, hideLikers }
 )(PostsIndex);

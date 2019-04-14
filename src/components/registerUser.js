@@ -12,7 +12,7 @@ class RegisterUser extends Component{
 				<input className="form-control"
 				type="text" 
 				{...field.input}/>
-				<div class="text-help">
+				<div className="text-help">
 					{field.meta.touched?field.meta.error:''}
 				</div>
 			</div>
@@ -26,7 +26,7 @@ class RegisterUser extends Component{
 				<input className="form-control"
 				type="password" 
 				{...field.input}/>
-				<div class="text-help">
+				<div className="text-help">
 					{field.meta.touched?field.meta.error:''}
 				</div>
 			</div>

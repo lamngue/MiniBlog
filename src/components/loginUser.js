@@ -15,7 +15,7 @@ class LoginUser extends Component {
                 <input className="form-control"
                 type="text" 
                 {...field.input}/>
-                <div class="text-help">
+                <div className="text-help">
                     {field.meta.touched?field.meta.error:''}
                 </div>
             </div>
@@ -29,7 +29,7 @@ class LoginUser extends Component {
                 <input className="form-control"
                 type="password" 
                 {...field.input}/>
-                <div class="text-help">
+                <div className="text-help">
                     {field.meta.touched?field.meta.error:''}
                 </div>
             </div>
@@ -58,8 +58,8 @@ class LoginUser extends Component {
     render() {
         const { handleSubmit } = this.props; //props passed back by ReduxForm
         const styles = {
-            'margin-left': '10%',
-            'margin-right': '10%'
+            'marginLeft': '10%',
+            'marginRight': '10%'
         }
         return (
             <div>

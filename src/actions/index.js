@@ -12,7 +12,10 @@ export const SIGN_OUT = "SIGN_OUT";
 export const LIKE_POST = "like_post";
 export const UNLIKE_POST = "unlike_post";
 export const FORGOT_PASSWORD = "forgot_password";
-const ROOT_URL = "https://miniblog-backend.herokuapp.com";
+export const SHOW_LIKERS = "show_likers";
+export const HIDE_LIKERS = "hide_likers";
+const ROOT_URL = "http://localhost:3001";
+
 let axiosConfig = {
 	headers: {
 		"Content-Type": "application/json;charset=UTF-8",
@@ -32,7 +35,7 @@ export const signOutGoogle = () => {
 	};
 };
 export function fetchPosts() {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const res = await axios.get(`${ROOT_URL}/posts`);
 		dispatch({
@@ -56,7 +59,7 @@ export function createPost(values, username, location, callback) {
 }
 
 export function fetchPost(id) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const res = await axios.get(`${ROOT_URL}/posts/${id}`);
 		dispatch({
@@ -82,9 +85,9 @@ export function deletePost(id, username, callback) {
 
 export function register(user) {
 	//send user to backend
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
-		try{
+		try {
 			const res = await axios.post(`${ROOT_URL}/register`, user);
 			dispatch({
 				type: REGISTER_USER,
@@ -98,10 +101,10 @@ export function register(user) {
 }
 export function login(user) {
 	// receives logged in user from backend
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const res = await axios.post(`${ROOT_URL}/login`, user);
-		if(res){
+		if (res) {
 			dispatch({
 				type: LOGIN_USER,
 				payload: res
@@ -111,7 +114,7 @@ export function login(user) {
 }
 export function loginWithFaceBook(user) {
 	//check if user already exists, else save user to database
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const res = await axios.post(`${ROOT_URL}/loginWithFaceBook`, user);
 		dispatch({
@@ -121,7 +124,7 @@ export function loginWithFaceBook(user) {
 	};
 }
 export function fetchUser(username) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const user = await axios.get(`${ROOT_URL}/user/${username}`);
 		dispatch({
@@ -132,7 +135,7 @@ export function fetchUser(username) {
 }
 
 export function likePost(username, postId) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const request = {
 			username,
@@ -146,7 +149,7 @@ export function likePost(username, postId) {
 	};
 }
 export function unlikePost(username, postId) {
-	return async function(dispatch) {
+	return async function (dispatch) {
 		// body...
 		const request = {
 			username,
@@ -160,13 +163,26 @@ export function unlikePost(username, postId) {
 	};
 }
 
-export function forgotPassword(email){
-	console.log(email);
-	return async function(dispatch){
+export function forgotPassword(email) {
+	return async function (dispatch) {
 		const res = await axios.post(`${ROOT_URL}/forgot`, email);
 		dispatch({
 			type: FORGOT_PASSWORD,
 			payload: res
 		});
 	}
+}
+
+export function showLikers(id) {
+	return {
+		type: SHOW_LIKERS,
+		payload: id
+	};
+}
+
+export function hideLikers() {
+	return {
+		type: HIDE_LIKERS,
+		payload: false
+	};
 }
