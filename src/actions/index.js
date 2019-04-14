@@ -14,7 +14,7 @@ export const UNLIKE_POST = "unlike_post";
 export const FORGOT_PASSWORD = "forgot_password";
 export const SHOW_LIKERS = "show_likers";
 export const HIDE_LIKERS = "hide_likers";
-const ROOT_URL = "http://localhost:3001";
+const ROOT_URL = "https://miniblog-backend.herokuapp.com/";
 
 let axiosConfig = {
 	headers: {
