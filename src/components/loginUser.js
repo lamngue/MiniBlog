@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/';
 import { loginWithFaceBook } from '../actions/';
-import FacebookLogin from 'react-facebook-login';
+import LoadingProgressBar from './LoadingBar';
 let facebookUser;
 class LoginUser extends Component {
+    constructor(props) {
+        super(props);
+        this.loadingBar = React.createRef();
+    }
+
     renderField(field) {
         const className1 = `form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`
         return (
@@ -36,6 +41,7 @@ class LoginUser extends Component {
         );
     }
     onSubmit(values) {
+        this.loadingBar.current.show();
         this.props.login(values).then(() => {
             if(this.props.users !== null){
                 this.props.history.push('/posts');
@@ -63,11 +69,6 @@ class LoginUser extends Component {
         }
         return (
             <div>
-				<FacebookLogin
-				    appId="375026166397978"
-				    fields="name,email,picture"
-				    onClick={this.componentClicked.bind(this)}
-				    callback={this.responseFacebook} />
 				<h3 className = "text-center" style={{textAlign: "center"}}> Now you are registered! Please login </h3>
 				<form onSubmit = {handleSubmit(this.onSubmit.bind(this))} style={styles}>
 					<Field label="Email" name="email" 
@@ -80,6 +81,7 @@ class LoginUser extends Component {
 					<Link to="/register" className="btn btn-success">Back to Register</Link>
                     <Link to="/forgotPassword" className="btn btn-danger">Forgot Password?</Link>
 				</form>
+                <LoadingProgressBar ref={this.loadingBar} />
 			</div>
         );
     }

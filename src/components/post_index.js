@@ -6,7 +6,7 @@ import { unlikePost } from "../actions/";
 import { showLikers, hideLikers } from "../actions/";
 import { Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
-import LoadingBar from 'react-redux-loading-bar';
+import LoadingBar from './LoadingBar';
 import _ from "lodash";
 class PostsIndex extends Component {
 	constructor(props) {
@@ -16,6 +16,7 @@ class PostsIndex extends Component {
 
 	componentDidMount() {
 		this.props.fetchPosts();
+		this.loadingBar.current.hide();
 	}
 	renderLikeButton(post, currentUser) {
 		if (
@@ -109,11 +110,7 @@ class PostsIndex extends Component {
 			"marginRight": "10%"
 		};
 		let username;
-		if (!this.props.posts || !this.props.users) {
-			return (
-				<LoadingBar/>
-			);
-		}
+		
 		if (Object.values(this.props.users)[0]) {
 			username = Object.values(this.props.users)[0].username;
 		}
@@ -139,6 +136,7 @@ class PostsIndex extends Component {
 				<ul className="list-group" style={styles}>
 					{this.renderPost()}
 				</ul>
+				<LoadingBar ref={this.loadingBar} />
 			</div>
 		);
 	}
