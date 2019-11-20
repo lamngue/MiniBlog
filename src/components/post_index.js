@@ -6,8 +6,14 @@ import { unlikePost } from "../actions/";
 import { showLikers, hideLikers } from "../actions/";
 import { Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
+import LoadingBar from 'react-redux-loading-bar';
 import _ from "lodash";
 class PostsIndex extends Component {
+	constructor(props) {
+		super(props);
+		this.loadingBar = React.createRef();
+	}
+
 	componentDidMount() {
 		this.props.fetchPosts();
 	}
@@ -40,7 +46,7 @@ class PostsIndex extends Component {
 			const liker = post.likedBy[0];
 			return (
 				<React.Fragment>
-					<a variant="primary">
+					<a href="javascript:;" variant="primary">
 						{liker} likes this
 					</a>
 				</React.Fragment>
@@ -49,7 +55,7 @@ class PostsIndex extends Component {
 		else if (post.likedBy.length > 1) {
 			return (
 				<React.Fragment>
-					<a href="#" variant="primary" onClick={() => this.props.showLikers(post._id)}>
+					<a href="javascript:;" variant="primary" onClick={() => this.props.showLikers(post._id)}>
 						{post.likedBy.length} people like this
 					</a>
 					<Modal show={this.props.show.postID === post._id ? true : false} onHide={this.handleClose}>
@@ -99,10 +105,15 @@ class PostsIndex extends Component {
 	}
 	render() {
 		const styles = {
-			"margin-left": "10%",
-			"margin-right": "10%"
+			"marginLeft": "10%",
+			"marginRight": "10%"
 		};
 		let username;
+		if (!this.props.posts || !this.props.users) {
+			return (
+				<LoadingBar/>
+			);
+		}
 		if (Object.values(this.props.users)[0]) {
 			username = Object.values(this.props.users)[0].username;
 		}

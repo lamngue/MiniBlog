@@ -45,8 +45,8 @@ class RegisterUser extends Component{
 	render(){
 		const {handleSubmit} = this.props; //props passed back by ReduxForm
 		const styles = {
-			'margin-left': '10%',
-			'margin-right': '10%'
+			'marginLeft': '10%',
+			'marginRight': '10%'
 		}
 		return(
 			<div>

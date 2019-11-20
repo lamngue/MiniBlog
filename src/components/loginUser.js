@@ -65,7 +65,6 @@ class LoginUser extends Component {
             <div>
 				<FacebookLogin
 				    appId="375026166397978"
-				    autoLoad={true}
 				    fields="name,email,picture"
 				    onClick={this.componentClicked.bind(this)}
 				    callback={this.responseFacebook} />
