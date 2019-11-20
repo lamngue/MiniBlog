@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Modal, Row } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Loader } from 'rsuite';
 

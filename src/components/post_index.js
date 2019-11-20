@@ -116,16 +116,16 @@ class PostsIndex extends Component {
 		}
 		return (
 			<div>
-				<div className="text-xs-right">
+				<div style={{marginRight: '10%', marginLeft: '10%'}} className="text-xs-right">
 					<Link className="btn btn-danger" to="/login">
 						{" "}
 						Back to Login
 					</Link>
-					<Link className="btn btn-danger" to="/register">
+					<Link style={{ marginLeft: '10px' }} className="btn btn-success" to="/register">
 						{" "}
 						Register new user
 					</Link>
-					<Link className="btn btn-primary" to="/posts/new">
+					<Link style={{ marginLeft: '10px' }} className="btn btn-primary ml-1" to="/posts/new">
 						Add a post!
 					</Link>
 					<h3 className="text-center" style={{ textAlign: "center" }}>

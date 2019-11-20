@@ -48,7 +48,6 @@ export function fetchPosts() {
 export function createPost(values, username, location, callback) {
 	values.username = username;
 	values.location = location;
-	console.log(values);
 	const newPost = axios
 		.post(`${ROOT_URL}/posts`, values)
 		.then(() => callback());
